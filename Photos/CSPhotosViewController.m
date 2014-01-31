@@ -11,12 +11,13 @@
 #import "CSPhotosAPIClient.h"
 #import "UIImageView+AFNetworking.h"
 #import "CSPhotoDetailViewController.h"
+#import "CSPhoto.h"
 
 static NSString *const kCSPhotoCellIdentifier = @"CSPhotoCellIdentifier";
 
 @interface CSPhotosViewController () <UICollectionViewDelegateFlowLayout>
 
-@property (nonatomic, strong) NSArray *photos;
+@property (nonatomic, strong) NSMutableArray *photos;
 
 @end
 
@@ -33,13 +34,6 @@ static NSString *const kCSPhotoCellIdentifier = @"CSPhotoCellIdentifier";
     return self;
 }
 
-#pragma mark -
-#pragma mark Properties
-
-- (NSArray *)photos
-{
-    return [_photos filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"url_z != NIL"]];
-}
 
 #pragma mark -
 #pragma mark View controller methods
@@ -70,10 +64,8 @@ static NSString *const kCSPhotoCellIdentifier = @"CSPhotoCellIdentifier";
 {
     CSPhotoCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:kCSPhotoCellIdentifier forIndexPath:indexPath];
     
-    NSDictionary *photo = [[self photos] objectAtIndex:[indexPath item]];
-    NSURL *url = [NSURL URLWithString:[photo objectForKey:@"url_z"]];
-    
-    [[cell imageView] setImageWithURL:url placeholderImage:nil];
+    CSPhoto *photo = (CSPhoto *)[[self photos] objectAtIndex:[indexPath item]];    
+    [[cell imageView] setImageWithURL:photo.urlMedium placeholderImage:nil];
     
     return cell;
 }
@@ -82,7 +74,7 @@ static NSString *const kCSPhotoCellIdentifier = @"CSPhotoCellIdentifier";
 {
     [collectionView deselectItemAtIndexPath:indexPath animated:YES];
     
-    NSDictionary *photo = [[self photos] objectAtIndex:[indexPath item]];
+    CSPhoto *photo = (CSPhoto *)[[self photos] objectAtIndex:[indexPath item]];
     
     CSPhotoDetailViewController *detailController = [[CSPhotoDetailViewController alloc] initWithPhoto:photo];
     [[self navigationController] pushViewController:detailController animated:YES];
@@ -90,11 +82,11 @@ static NSString *const kCSPhotoCellIdentifier = @"CSPhotoCellIdentifier";
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewFlowLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSDictionary *photo = [[self photos] objectAtIndex:[indexPath item]];
+    CSPhoto *photo = (CSPhoto *)[[self photos] objectAtIndex:[indexPath item]];
     
     CGSize maxSize = [collectionViewLayout itemSize];
 
-    CGSize photoSize = CGSizeMake([[photo objectForKey:@"width_z"] floatValue], [[photo objectForKey:@"height_z"] floatValue]);
+    CGSize photoSize = CGSizeMake(photo.widthMedium, photo.heightMedium);
     if (CGSizeEqualToSize(photoSize, CGSizeZero)) {
         photoSize = maxSize;
     }
@@ -121,7 +113,7 @@ static NSString *const kCSPhotoCellIdentifier = @"CSPhotoCellIdentifier";
 - (void)fetchPhotos
 {
     [[CSPhotosAPIClient sharedClient] fetchPhotosWithSuccess:^(id responseObject) {
-        [self setPhotos:[[responseObject objectForKey:@"photos"] objectForKey:@"photo"]];
+        [self setPhotos:[CSPhoto preparePhotos:responseObject]];
         [[self collectionView] reloadData];
     } failure:^(NSError *error) {
         [[[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Error", @"") message:[error localizedDescription] delegate:nil cancelButtonTitle:NSLocalizedString(@"Okay", @"") otherButtonTitles:nil] show];

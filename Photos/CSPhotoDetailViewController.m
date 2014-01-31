@@ -11,14 +11,14 @@
 
 @interface CSPhotoDetailViewController ()
 
-@property (nonatomic, strong) NSDictionary *photo;
+@property (nonatomic, strong) CSPhoto *photo;
 @property (nonatomic, strong) UIImageView *imageView;
 
 @end
 
 @implementation CSPhotoDetailViewController
 
-- (id)initWithPhoto:(NSDictionary *)photo
+- (id)initWithPhoto:(CSPhoto *)photo
 {
     if ((self = [super init])) {
         [self setPhoto:photo];
@@ -43,9 +43,9 @@
 {
     [super viewDidLoad];
     
-    NSURL *url = [NSURL URLWithString:[[self photo] objectForKey:@"url_o"]];
+    NSURL *url = self.photo.urlFullSize;
     if (url == nil) {
-        url = [NSURL URLWithString:[[self photo] objectForKey:@"url_z"]];
+        url = self.photo.urlMedium;
     }
     
     [[self imageView] setImageWithURL:url placeholderImage:nil];

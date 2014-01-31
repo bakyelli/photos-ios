@@ -33,12 +33,13 @@
     
     for(NSDictionary *rawPhotoDict in rawPhotos)
     {
-        CSPhoto *photo = [[CSPhoto alloc]initWithDictionary:rawPhotoDict];
-        [photos addObject:photo];
+        if([rawPhotoDict objectForKey:@"url_z"] != nil){
+            CSPhoto *photo = [[CSPhoto alloc]initWithDictionary:rawPhotoDict];
+            [photos addObject:photo];
+        }
     }
     
     return photos;
-
 }
 
 
