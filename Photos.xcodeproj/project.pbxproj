@@ -147,9 +147,9 @@
 				7E77C31A16C044F200E2E8AD /* CSPhotosAPIClient.h */,
 				7E77C31B16C044F200E2E8AD /* CSPhotosAPIClient.m */,
 				7E77C32016C04E7600E2E8AD /* CSPhotosAPIClientConstants.h */,
+				F1AD8716189C54A400C73E40 /* CSPhotosAPIClientConstants.m */,
 				7E77C2E516C03EEB00E2E8AD /* Photos.xcdatamodeld */,
 				7E77C2D416C03EEB00E2E8AD /* Supporting Files */,
-				F1AD8716189C54A400C73E40 /* CSPhotosAPIClientConstants.m */,
 			);
 			path = Photos;
 			sourceTree = "<group>";
