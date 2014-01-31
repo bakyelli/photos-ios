@@ -17,6 +17,6 @@
 @property (strong, nonatomic) NSURL *urlMedium;
 @property (assign) float widthMedium;
 @property (assign) float heightMedium;
-
+@property (strong, nonatomic) NSArray *tags; 
 
 @end
