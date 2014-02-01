@@ -20,6 +20,9 @@
         _urlFullSize = [NSURL URLWithString:[photoDict objectForKey:@"url_o"]];
         _widthMedium = [[photoDict objectForKey:@"width_z"] floatValue];
         _heightMedium = [[photoDict objectForKey:@"height_z"] floatValue];
+        _title = [photoDict objectForKey:@"title"];
+        _owername = [photoDict objectForKey:@"ownername"];
+        _date_taken = [photoDict objectForKey:@"datetaken"];
         _tags = [[photoDict objectForKey:@"tags"] componentsSeparatedByString:@" "];
     }
     

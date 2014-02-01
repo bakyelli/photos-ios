@@ -15,8 +15,11 @@
 
 @property (strong, nonatomic) NSURL *urlFullSize;
 @property (strong, nonatomic) NSURL *urlMedium;
+@property (strong, nonatomic) NSArray *tags;
+@property (strong, nonatomic) NSString *title;
+@property (strong, nonatomic) NSString *owername;
+@property (strong, nonatomic) NSString *date_taken; 
 @property (assign) float widthMedium;
 @property (assign) float heightMedium;
-@property (strong, nonatomic) NSArray *tags; 
 
 @end

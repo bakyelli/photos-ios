@@ -47,7 +47,7 @@ static NSString *const kCSPhotosAPIRestPathString = @"/services/rest";
 
 - (void)fetchPhotosWithSuccess:(void (^)(id responseObject))success failure:(void (^)(NSError *))failure
 {
-    NSDictionary *parameters = [self parametersWithMethodName:@"flickr.photos.getRecent" additionalParameters:@{@"sort" : @"date-posted-desc", @"extras" : @"url_z,url_o,tags"}];
+    NSDictionary *parameters = [self parametersWithMethodName:@"flickr.photos.getRecent" additionalParameters:@{@"sort" : @"date-posted-desc", @"extras" : @"url_z,url_o,tags,owner_name,date_taken"}];
     
     [self getPath:kCSPhotosAPIRestPathString parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
         id responseJSON = [NSJSONSerialization JSONObjectWithData:responseObject options:0 error:NULL];

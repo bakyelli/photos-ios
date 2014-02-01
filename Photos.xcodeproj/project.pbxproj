@@ -38,7 +38,6 @@
 		F1AD871D189C667500C73E40 /* CSTagsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F1AD871C189C667500C73E40 /* CSTagsViewController.m */; };
 		F1AD8725189C858F00C73E40 /* CSTagsTableViewContentView.m in Sources */ = {isa = PBXBuildFile; fileRef = F1AD8724189C858F00C73E40 /* CSTagsTableViewContentView.m */; };
 		F1AD8727189C85A600C73E40 /* CSTagsTableViewContentView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F1AD8726189C85A600C73E40 /* CSTagsTableViewContentView.xib */; };
-		F1AD8729189C87F800C73E40 /* bart.jpg in Resources */ = {isa = PBXBuildFile; fileRef = F1AD8728189C87F800C73E40 /* bart.jpg */; };
 		F1AD872C189C88DE00C73E40 /* CSTagsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F1AD872B189C88DE00C73E40 /* CSTagsTableViewCell.m */; };
 /* End PBXBuildFile section */
 
@@ -96,7 +95,6 @@
 		F1AD8723189C858F00C73E40 /* CSTagsTableViewContentView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSTagsTableViewContentView.h; sourceTree = "<group>"; };
 		F1AD8724189C858F00C73E40 /* CSTagsTableViewContentView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CSTagsTableViewContentView.m; sourceTree = "<group>"; };
 		F1AD8726189C85A600C73E40 /* CSTagsTableViewContentView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CSTagsTableViewContentView.xib; sourceTree = "<group>"; };
-		F1AD8728189C87F800C73E40 /* bart.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = bart.jpg; sourceTree = "<group>"; };
 		F1AD872A189C88DE00C73E40 /* CSTagsTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSTagsTableViewCell.h; sourceTree = "<group>"; };
 		F1AD872B189C88DE00C73E40 /* CSTagsTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CSTagsTableViewCell.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -174,7 +172,6 @@
 				F1AD8726189C85A600C73E40 /* CSTagsTableViewContentView.xib */,
 				F1AD872A189C88DE00C73E40 /* CSTagsTableViewCell.h */,
 				F1AD872B189C88DE00C73E40 /* CSTagsTableViewCell.m */,
-				F1AD8728189C87F800C73E40 /* bart.jpg */,
 				7E77C2D416C03EEB00E2E8AD /* Supporting Files */,
 			);
 			path = Photos;
@@ -285,7 +282,6 @@
 				7E77C2E016C03EEB00E2E8AD /* Default.png in Resources */,
 				F1AD8727189C85A600C73E40 /* CSTagsTableViewContentView.xib in Resources */,
 				7E77C2E216C03EEB00E2E8AD /* Default@2x.png in Resources */,
-				F1AD8729189C87F800C73E40 /* bart.jpg in Resources */,
 				7E77C2E416C03EEB00E2E8AD /* Default-568h@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
