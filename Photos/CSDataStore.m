@@ -36,6 +36,8 @@
 
 - (void) savePhotos:(NSDictionary *)responseDict
 {
+    [self normalizeDatabase];
+    
     NSArray *rawPhotos = [[responseDict objectForKey:@"photos"] objectForKey:@"photo"];
     
     for(NSDictionary *rawPhotoDict in rawPhotos)
@@ -89,6 +91,62 @@
     {
         return NO;
     }
+}
+
+#pragma mark - NSFetchedResultsController Stack
+
+- (NSFetchedResultsController *)fetchedResultsController {
+    
+    _fetchedResultsController = [self createFetchRequest];
+    [_fetchedResultsController performFetch:nil];
+    
+    return _fetchedResultsController;
+    
+}
+
+- (void) normalizeDatabase
+{
+    if([[self.fetchedResultsController fetchedObjects] count] > 500)
+    {
+        NSFetchedResultsController *myFetchedResultsController = [self createFetchRequest];
+        
+        [myFetchedResultsController performFetch:nil];
+        
+        for(int i = 0; i < 300; i++)
+        {
+            CSPhotoItem *item = [[myFetchedResultsController fetchedObjects] objectAtIndex:i];
+            [self.managedObjectContext deleteObject:item];
+        }
+        
+        [self.managedObjectContext save:nil];
+        
+    }
+}
+
+- (NSFetchedResultsController *) createFetchRequest
+{
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+    [NSFetchedResultsController deleteCacheWithName:@"CSPhotoItem"];
+    
+    NSEntityDescription *entity = [NSEntityDescription entityForName:@"CSPhotoItem"
+                                              inManagedObjectContext:[CSDataStore sharedStore].managedObjectContext];
+    [fetchRequest setEntity:entity];
+    [fetchRequest setFetchBatchSize:500];
+    
+    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"date_taken" ascending:NO];
+    
+    [fetchRequest setSortDescriptors:@[sortDescriptor]];
+    
+    NSFetchedResultsController *myFetchedResultsController =
+    [[NSFetchedResultsController alloc]
+     initWithFetchRequest:fetchRequest
+     managedObjectContext:[CSDataStore sharedStore].managedObjectContext
+     sectionNameKeyPath:nil
+     cacheName:@"CSPhotoItem"];
+    
+    myFetchedResultsController.delegate = self;
+
+    return myFetchedResultsController;
 }
 
 #pragma mark - Core Data stack

@@ -83,7 +83,7 @@ static NSString *const kCSPhotoCellIdentifier = @"CSPhotoCellIdentifier";
 {
     [collectionView deselectItemAtIndexPath:indexPath animated:YES];
     
-    CSPhotoItem *photo = [[self.fetchedResultsController fetchedObjects] objectAtIndex:indexPath.row];
+    CSPhotoItem *photo = [self.photos objectAtIndex:indexPath.row];
     
     CSPhotoDetailViewController *detailController = [[CSPhotoDetailViewController alloc] initWithPhoto:photo];
     [[self navigationController] pushViewController:detailController animated:YES];
@@ -131,7 +131,7 @@ static NSString *const kCSPhotoCellIdentifier = @"CSPhotoCellIdentifier";
 {
     [[CSPhotosAPIClient sharedClient] fetchPhotosWithSuccess:^(id responseObject) {
         [[CSDataStore sharedStore] savePhotos:responseObject];
-        self.photos = [self.fetchedResultsController fetchedObjects];
+        self.photos = [[CSDataStore sharedStore].fetchedResultsController fetchedObjects];
         [[self collectionView] reloadData];
         [self setupBarButtons];
     } failure:^(NSError *error) {
@@ -139,37 +139,7 @@ static NSString *const kCSPhotoCellIdentifier = @"CSPhotoCellIdentifier";
     }];
 }
 
-#pragma mark - NSFetchedResultsController Stack
 
-- (NSFetchedResultsController *)fetchedResultsController {
-    
-    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
-    [NSFetchedResultsController deleteCacheWithName:@"CSPhotoItem"];
-    
-    NSEntityDescription *entity = [NSEntityDescription entityForName:@"CSPhotoItem"
-                                              inManagedObjectContext:[CSDataStore sharedStore].managedObjectContext];
-    [fetchRequest setEntity:entity];
-    [fetchRequest setFetchBatchSize:100];
-    
-    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"date_taken" ascending:NO];
-    
-    [fetchRequest setSortDescriptors:@[sortDescriptor]];
-    
-    NSFetchedResultsController *myFetchedResultsController =
-    [[NSFetchedResultsController alloc]
-     initWithFetchRequest:fetchRequest
-     managedObjectContext:[CSDataStore sharedStore].managedObjectContext
-     sectionNameKeyPath:nil
-     cacheName:@"CSPhotoItem"];
-    
-    myFetchedResultsController.delegate = self;
-    _fetchedResultsController = myFetchedResultsController;
-    [_fetchedResultsController performFetch:nil];
-    
-    
-    return _fetchedResultsController;
-    
-}
 
 
 

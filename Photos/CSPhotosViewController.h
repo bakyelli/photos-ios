@@ -11,8 +11,7 @@
 #import "CSDataStore.h" 
 #import "CSPhotoItem.h"
 
-@interface CSPhotosViewController : UICollectionViewController <NSFetchedResultsControllerDelegate>
+@interface CSPhotosViewController : UICollectionViewController
 
-@property (strong, nonatomic) NSFetchedResultsController *fetchedResultsController;
 
 @end
