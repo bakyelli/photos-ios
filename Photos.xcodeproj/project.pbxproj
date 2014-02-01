@@ -158,30 +158,9 @@
 			children = (
 				7E77C2DC16C03EEB00E2E8AD /* CSAppDelegate.h */,
 				7E77C2DD16C03EEB00E2E8AD /* CSAppDelegate.m */,
-				7E77C31416C043A400E2E8AD /* CSPhotosViewController.h */,
-				7E77C31516C043A400E2E8AD /* CSPhotosViewController.m */,
-				F1AD871B189C667500C73E40 /* CSTagsViewController.h */,
-				F1AD871C189C667500C73E40 /* CSTagsViewController.m */,
-				F1AD8738189CC4D000C73E40 /* CSPhotoItem+Util.h */,
-				F1AD8739189CC4D000C73E40 /* CSPhotoItem+Util.m */,
-				F1AD8732189CB6E200C73E40 /* CSPhotoItem.h */,
-				F1AD8733189CB6E200C73E40 /* CSPhotoItem.m */,
-				F1AD8735189CB72100C73E40 /* CSDataStore.h */,
-				F1AD8736189CB72100C73E40 /* CSDataStore.m */,
-				7E77C31D16C049E800E2E8AD /* CSPhotoDetailViewController.h */,
-				7E77C31E16C049E800E2E8AD /* CSPhotoDetailViewController.m */,
-				7E77C31716C043B000E2E8AD /* CSPhotoCell.h */,
-				7E77C31816C043B000E2E8AD /* CSPhotoCell.m */,
-				7E77C31A16C044F200E2E8AD /* CSPhotosAPIClient.h */,
-				7E77C31B16C044F200E2E8AD /* CSPhotosAPIClient.m */,
-				7E77C32016C04E7600E2E8AD /* CSPhotosAPIClientConstants.h */,
-				F1AD8716189C54A400C73E40 /* CSPhotosAPIClientConstants.m */,
-				7E77C2E516C03EEB00E2E8AD /* Photos.xcdatamodeld */,
-				F1AD8723189C858F00C73E40 /* CSTagsTableViewContentView.h */,
-				F1AD8724189C858F00C73E40 /* CSTagsTableViewContentView.m */,
-				F1AD8726189C85A600C73E40 /* CSTagsTableViewContentView.xib */,
-				F1AD872A189C88DE00C73E40 /* CSTagsTableViewCell.h */,
-				F1AD872B189C88DE00C73E40 /* CSTagsTableViewCell.m */,
+				F1AD873C189D48E200C73E40 /* View Controllers */,
+				F1AD873B189D48D000C73E40 /* Model */,
+				F1AD873D189D48E900C73E40 /* Views */,
 				7E77C2D416C03EEB00E2E8AD /* Supporting Files */,
 			);
 			path = Photos;
@@ -234,6 +213,51 @@
 			);
 			name = AFNetworking;
 			path = AFNetworking/AFNetworking;
+			sourceTree = "<group>";
+		};
+		F1AD873B189D48D000C73E40 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				7E77C2E516C03EEB00E2E8AD /* Photos.xcdatamodeld */,
+				F1AD8738189CC4D000C73E40 /* CSPhotoItem+Util.h */,
+				F1AD8739189CC4D000C73E40 /* CSPhotoItem+Util.m */,
+				F1AD8732189CB6E200C73E40 /* CSPhotoItem.h */,
+				F1AD8733189CB6E200C73E40 /* CSPhotoItem.m */,
+				F1AD8735189CB72100C73E40 /* CSDataStore.h */,
+				F1AD8736189CB72100C73E40 /* CSDataStore.m */,
+				7E77C31716C043B000E2E8AD /* CSPhotoCell.h */,
+				7E77C31816C043B000E2E8AD /* CSPhotoCell.m */,
+				7E77C31A16C044F200E2E8AD /* CSPhotosAPIClient.h */,
+				7E77C31B16C044F200E2E8AD /* CSPhotosAPIClient.m */,
+				7E77C32016C04E7600E2E8AD /* CSPhotosAPIClientConstants.h */,
+				F1AD8716189C54A400C73E40 /* CSPhotosAPIClientConstants.m */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		F1AD873C189D48E200C73E40 /* View Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				7E77C31416C043A400E2E8AD /* CSPhotosViewController.h */,
+				7E77C31516C043A400E2E8AD /* CSPhotosViewController.m */,
+				F1AD871B189C667500C73E40 /* CSTagsViewController.h */,
+				F1AD871C189C667500C73E40 /* CSTagsViewController.m */,
+				7E77C31D16C049E800E2E8AD /* CSPhotoDetailViewController.h */,
+				7E77C31E16C049E800E2E8AD /* CSPhotoDetailViewController.m */,
+				F1AD8723189C858F00C73E40 /* CSTagsTableViewContentView.h */,
+				F1AD8724189C858F00C73E40 /* CSTagsTableViewContentView.m */,
+			);
+			name = "View Controllers";
+			sourceTree = "<group>";
+		};
+		F1AD873D189D48E900C73E40 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				F1AD8726189C85A600C73E40 /* CSTagsTableViewContentView.xib */,
+				F1AD872A189C88DE00C73E40 /* CSTagsTableViewCell.h */,
+				F1AD872B189C88DE00C73E40 /* CSTagsTableViewCell.m */,
+			);
+			name = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
