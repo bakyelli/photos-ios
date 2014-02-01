@@ -49,7 +49,10 @@
     }
     
     [[self imageView] setImageWithURL:url placeholderImage:nil];
-    [[self navigationItem] setRightBarButtonItem:[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCompose target:self action:@selector(metaDataTogglePressed:)]];
+    [[self navigationItem] setRightBarButtonItem:[[UIBarButtonItem alloc] initWithTitle:@"Info"
+                                                                                  style:UIBarButtonItemStylePlain
+                                                                                 target:self
+                                                                                 action:@selector(metaDataTogglePressed:)]];
 }
 
 - (void)metaDataTogglePressed:(id)sender
@@ -69,7 +72,7 @@
     self.metaDataView = [[UIView alloc]initWithFrame:CGRectMake(self.imageView.frame.origin.x,
                                                                 self.imageView.frame.origin.y,
                                                                 self.view.frame.size.width,
-                                                                100)];
+                                                                50)];
     
     self.metaDataView.backgroundColor = [UIColor darkGrayColor];
     
@@ -88,7 +91,7 @@
                                                                     self.imageView.frame.origin.y+30,
                                                                     self.imageView.frame.size.width-10,
                                                                     20)];
-    detailsLabel.font = [UIFont fontWithName:@"Avenir" size:12];
+    detailsLabel.font = [UIFont fontWithName:@"Avenir" size:11];
     detailsLabel.numberOfLines = 1;
     detailsLabel.textColor = [UIColor whiteColor];
     detailsLabel.backgroundColor = [UIColor clearColor];
