@@ -35,6 +35,7 @@
 		7E77C31F16C049E800E2E8AD /* CSPhotoDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E77C31E16C049E800E2E8AD /* CSPhotoDetailViewController.m */; };
 		F1AD8717189C54A400C73E40 /* CSPhotosAPIClientConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = F1AD8716189C54A400C73E40 /* CSPhotosAPIClientConstants.m */; };
 		F1AD871A189C5A5B00C73E40 /* CSPhoto.m in Sources */ = {isa = PBXBuildFile; fileRef = F1AD8719189C5A5B00C73E40 /* CSPhoto.m */; };
+		F1AD871D189C667500C73E40 /* CSTagsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F1AD871C189C667500C73E40 /* CSTagsViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -86,6 +87,8 @@
 		F1AD8716189C54A400C73E40 /* CSPhotosAPIClientConstants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CSPhotosAPIClientConstants.m; sourceTree = "<group>"; };
 		F1AD8718189C5A5B00C73E40 /* CSPhoto.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSPhoto.h; sourceTree = "<group>"; };
 		F1AD8719189C5A5B00C73E40 /* CSPhoto.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CSPhoto.m; sourceTree = "<group>"; };
+		F1AD871B189C667500C73E40 /* CSTagsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSTagsViewController.h; sourceTree = "<group>"; };
+		F1AD871C189C667500C73E40 /* CSTagsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CSTagsViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -143,6 +146,8 @@
 				7E77C2DD16C03EEB00E2E8AD /* CSAppDelegate.m */,
 				7E77C31416C043A400E2E8AD /* CSPhotosViewController.h */,
 				7E77C31516C043A400E2E8AD /* CSPhotosViewController.m */,
+				F1AD871B189C667500C73E40 /* CSTagsViewController.h */,
+				F1AD871C189C667500C73E40 /* CSTagsViewController.m */,
 				F1AD8718189C5A5B00C73E40 /* CSPhoto.h */,
 				F1AD8719189C5A5B00C73E40 /* CSPhoto.m */,
 				7E77C31D16C049E800E2E8AD /* CSPhotoDetailViewController.h */,
@@ -286,6 +291,7 @@
 				7E77C30C16C0434E00E2E8AD /* AFPropertyListRequestOperation.m in Sources */,
 				7E77C30D16C0434E00E2E8AD /* AFURLConnectionOperation.m in Sources */,
 				7E77C30E16C0434E00E2E8AD /* AFXMLRequestOperation.m in Sources */,
+				F1AD871D189C667500C73E40 /* CSTagsViewController.m in Sources */,
 				7E77C30F16C0434E00E2E8AD /* UIImageView+AFNetworking.m in Sources */,
 				7E77C31616C043A400E2E8AD /* CSPhotosViewController.m in Sources */,
 				F1AD871A189C5A5B00C73E40 /* CSPhoto.m in Sources */,

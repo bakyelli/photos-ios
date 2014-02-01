@@ -21,7 +21,6 @@
         _widthMedium = [[photoDict objectForKey:@"width_z"] floatValue];
         _heightMedium = [[photoDict objectForKey:@"height_z"] floatValue];
         _tags = [[photoDict objectForKey:@"tags"] componentsSeparatedByString:@" "];
-        NSLog(@"%@",_tags);
     }
     
     return self;

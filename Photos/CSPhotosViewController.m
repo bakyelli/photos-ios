@@ -12,6 +12,7 @@
 #import "UIImageView+AFNetworking.h"
 #import "CSPhotoDetailViewController.h"
 #import "CSPhoto.h"
+#import "CSTagsViewController.h" 
 
 static NSString *const kCSPhotoCellIdentifier = @"CSPhotoCellIdentifier";
 
@@ -46,10 +47,16 @@ static NSString *const kCSPhotoCellIdentifier = @"CSPhotoCellIdentifier";
     [[self collectionView] setBackgroundColor:[UIColor whiteColor]];
     
     [[self collectionView] registerClass:[CSPhotoCell class] forCellWithReuseIdentifier:kCSPhotoCellIdentifier];
-    
-    [[self navigationItem] setRightBarButtonItem:[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh target:self action:@selector(refreshButtonPressed:)]];
-    
+
     [self fetchPhotos];
+}
+
+- (void)setupBarButtons
+{
+    if([self navigationItem].rightBarButtonItem == nil && [self navigationItem].leftBarButtonItem == nil){
+        [[self navigationItem] setRightBarButtonItem:[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh target:self action:@selector(refreshButtonPressed:)]];
+        [[self navigationItem] setLeftBarButtonItem:[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemBookmarks target:self action:@selector(tagsButtonPressed:)]];
+    }
 }
 
 #pragma mark -
@@ -107,6 +114,14 @@ static NSString *const kCSPhotoCellIdentifier = @"CSPhotoCellIdentifier";
     [self fetchPhotos];
 }
 
+- (void)tagsButtonPressed:(id)sender
+{
+    CSTagsViewController *tagsVC = [[CSTagsViewController alloc]initWithPhotos:self.photos];
+    tagsVC.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
+    UINavigationController *navTags = [[UINavigationController alloc]initWithRootViewController:tagsVC];
+    [self presentViewController:navTags animated:YES completion:nil];
+}
+
 #pragma mark -
 #pragma mark Helpers
 
@@ -115,6 +130,7 @@ static NSString *const kCSPhotoCellIdentifier = @"CSPhotoCellIdentifier";
     [[CSPhotosAPIClient sharedClient] fetchPhotosWithSuccess:^(id responseObject) {
         [self setPhotos:[CSPhoto preparePhotos:responseObject]];
         [[self collectionView] reloadData];
+         [self setupBarButtons];
     } failure:^(NSError *error) {
         [[[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Error", @"") message:[error localizedDescription] delegate:nil cancelButtonTitle:NSLocalizedString(@"Okay", @"") otherButtonTitles:nil] show];
     }];
