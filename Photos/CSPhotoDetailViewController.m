@@ -37,6 +37,8 @@
     [imageView setAutoresizingMask:UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight];
     [[self view] addSubview:imageView];
     [self setImageView:imageView];
+    self.navigationController.navigationBar.translucent = NO;
+
 }
 
 - (void)viewDidLoad
