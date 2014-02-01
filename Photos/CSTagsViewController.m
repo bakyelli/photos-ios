@@ -10,6 +10,7 @@
 #import "CSPhoto.h"
 #import "CSTagsTableViewContentView.h"
 #import "CSTagsTableViewCell.h"
+#import "CSPhotoDetailViewController.h"
 
 static NSString *const kCSTagCellIdentifier = @"CSTagCellIdentifier";
 static NSString *const kCSPhotoCellIdentifier = @"CSPhotoCellIdentifier";
@@ -41,7 +42,7 @@ static NSString *const kCSPhotoCellIdentifier = @"CSPhotoCellIdentifier";
     [super viewDidLoad];
     [self.tableView setRowHeight:180];
     [self.tableView registerClass:[CSTagsTableViewCell class] forCellReuseIdentifier:kCSTagCellIdentifier];
-    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(showPhotoDetailView:) name:@"showPhotoDetailView" object:nil];
     [self setTitle:@"Browse Photos by Tags"];
     [self setupBarButtons];
 }
@@ -74,6 +75,16 @@ static NSString *const kCSPhotoCellIdentifier = @"CSPhotoCellIdentifier";
     if([self navigationItem].leftBarButtonItem == nil){
         [[self navigationItem] setLeftBarButtonItem:[[UIBarButtonItem alloc] initWithTitle:@"X" style:UIBarButtonItemStylePlain target:self action:@selector(dismissButtonPressed:)]];
     }
+}
+
+-(void)showPhotoDetailView:(NSNotification *)notification
+{
+    CSPhoto *photo = [notification object];
+    
+    CSPhotoDetailViewController *detailController = [[CSPhotoDetailViewController alloc] initWithPhoto:photo];
+    [[self navigationController] pushViewController:detailController animated:YES];
+
+    
 }
 
 #pragma mark -
@@ -128,55 +139,5 @@ static NSString *const kCSPhotoCellIdentifier = @"CSPhotoCellIdentifier";
     return cell;
 }
 
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
-}
-*/
-
-/*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    }   
-    else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
-}
-*/
-
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath
-{
-}
-*/
-
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
-
-/*
-#pragma mark - Navigation
-
-// In a story board-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-
- */
 
 @end

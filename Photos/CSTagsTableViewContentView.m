@@ -10,6 +10,7 @@
 #import "CSPhotoCell.h"
 #import "CSPhoto.h"
 #import "UIImageView+AFNetworking.h"
+#import "CSPhotoDetailViewController.h"
 
 static NSString *const kCSPhotoCellIdentifier = @"CSPhotoCellIdentifier";
 
@@ -24,6 +25,7 @@ static NSString *const kCSPhotoCellIdentifier = @"CSPhotoCellIdentifier";
 {
     [self.collectionView setBackgroundColor:[UIColor whiteColor]];
     [[self collectionView] registerClass:[CSPhotoCell class] forCellWithReuseIdentifier:kCSPhotoCellIdentifier];
+    [self.collectionView setAlwaysBounceHorizontal:YES];
 }
 
 #pragma mark - 
@@ -42,18 +44,15 @@ static NSString *const kCSPhotoCellIdentifier = @"CSPhotoCellIdentifier";
 -(UICollectionViewCell *) collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
     CSPhotoCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:kCSPhotoCellIdentifier forIndexPath:indexPath];
-    
     CSPhoto *photo = self.photos[indexPath.row];
-    
     [[cell imageView] setImageWithURL:photo.urlMedium placeholderImage:nil];
-    
     return cell;
-
 }
 
 -(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSLog(@"Tapped!");
+    CSPhoto *photo = self.photos[indexPath.row];
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"showPhotoDetailView" object:photo];
 }
 
 -(void)showFilteredPhotos:(NSArray *)photos
