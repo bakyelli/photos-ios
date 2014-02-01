@@ -53,6 +53,8 @@
                                                                                   style:UIBarButtonItemStylePlain
                                                                                  target:self
                                                                                  action:@selector(metaDataTogglePressed:)]];
+    
+    [self setupMetaDataView];
 }
 
 - (void)metaDataTogglePressed:(id)sender
@@ -63,7 +65,7 @@
     }
     else
     {
-        [self setupMetaDataView];
+        [self.imageView addSubview:self.metaDataView];
     }
 }
 
@@ -76,9 +78,9 @@
     
     self.metaDataView.backgroundColor = [UIColor darkGrayColor];
     
-    UILabel *titleLabel = [[UILabel alloc]initWithFrame:CGRectMake(self.imageView.frame.origin.x+5,
-                                                                   self.imageView.frame.origin.y+10,
-                                                                   self.imageView.frame.size.width-10,
+    UILabel *titleLabel = [[UILabel alloc]initWithFrame:CGRectMake(self.metaDataView.frame.origin.x+5,
+                                                                   self.metaDataView.frame.origin.y+10,
+                                                                   self.metaDataView.frame.size.width-10,
                                                                    20)];
     titleLabel.font = [UIFont fontWithName:@"Avenir" size:15];
     titleLabel.numberOfLines = 1;
@@ -87,9 +89,9 @@
     titleLabel.text = self.photo.title;
     
     
-    UILabel *detailsLabel = [[UILabel alloc]initWithFrame:CGRectMake(self.imageView.frame.origin.x+5,
-                                                                    self.imageView.frame.origin.y+30,
-                                                                    self.imageView.frame.size.width-10,
+    UILabel *detailsLabel = [[UILabel alloc]initWithFrame:CGRectMake(self.metaDataView.frame.origin.x+5,
+                                                                    self.metaDataView.frame.origin.y+30,
+                                                                    self.metaDataView.frame.size.width-10,
                                                                     20)];
     detailsLabel.font = [UIFont fontWithName:@"Avenir" size:11];
     detailsLabel.numberOfLines = 1;
@@ -102,7 +104,7 @@
     [self.metaDataView addSubview:titleLabel];
     [self.metaDataView addSubview:detailsLabel];
 
-    [self.imageView addSubview:self.metaDataView];
+    
 }
 
 @end
