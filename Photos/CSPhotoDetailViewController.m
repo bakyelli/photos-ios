@@ -59,6 +59,8 @@
     [self setupMetaDataView];
 }
 
+#pragma mark - MetaDataView setup
+
 - (void)metaDataTogglePressed:(id)sender
 {
     if(self.imageView.subviews.count > 0)
@@ -73,23 +75,21 @@
 
 - (void)setupMetaDataView
 {
-    self.metaDataView = [[UIView alloc]initWithFrame:CGRectMake(self.imageView.frame.origin.x,
-                                                                self.imageView.frame.origin.y,
-                                                                self.view.frame.size.width,
-                                                                50)];
+    self.metaDataView = [[UIView alloc]init];
+    [self setMetaViewFrame];
     
     self.metaDataView.backgroundColor = [UIColor darkGrayColor];
     
     UILabel *titleLabel = [[UILabel alloc]initWithFrame:CGRectMake(self.metaDataView.frame.origin.x+5,
                                                                    self.metaDataView.frame.origin.y+10,
-                                                                   self.metaDataView.frame.size.width-10,
+                                                                   self.metaDataView.frame.size.width+100,
                                                                    20)];
+    
     titleLabel.font = [UIFont fontWithName:@"Avenir" size:15];
     titleLabel.numberOfLines = 1;
     titleLabel.textColor = [UIColor whiteColor];
     titleLabel.backgroundColor = [UIColor clearColor];
     titleLabel.text = self.photo.title;
-    
     
     UILabel *detailsLabel = [[UILabel alloc]initWithFrame:CGRectMake(self.metaDataView.frame.origin.x+5,
                                                                     self.metaDataView.frame.origin.y+30,
@@ -101,12 +101,34 @@
     detailsLabel.backgroundColor = [UIColor clearColor];
     detailsLabel.text = [NSString stringWithFormat:@"Uploaded by: %@, Taken on: %@", self.photo.ownername, self.photo.date_taken];
 
-    
-   
     [self.metaDataView addSubview:titleLabel];
     [self.metaDataView addSubview:detailsLabel];
-
     
 }
+
+- (void)viewWillLayoutSubviews
+{
+    [self setMetaViewFrame];
+
+}
+- (void)setMetaViewFrame
+{
+    UIInterfaceOrientation currentOrientation = self.interfaceOrientation;
+
+    CGRect frame = self.view.bounds;
+    if(UIInterfaceOrientationIsPortrait(currentOrientation))
+    {
+        frame.size.height = frame.size.height / 10;
+    }
+    else
+    {
+        frame.size.height = frame.size.height / 5;
+
+    }
+    self.metaDataView.frame  = frame;
+}
+
+
+
 
 @end

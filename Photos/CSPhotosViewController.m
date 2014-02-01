@@ -64,7 +64,7 @@ static NSString *const kCSPhotoCellIdentifier = @"CSPhotoCellIdentifier";
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
-    self.title = [NSString stringWithFormat:@"%@ (%d)",@"Photos", [self.photos count]];
+    self.title = [NSString stringWithFormat:@"%@ (%d)",NSLocalizedString(@"Photos", nil), [self.photos count]];
     return [self.photos count];
 }
 

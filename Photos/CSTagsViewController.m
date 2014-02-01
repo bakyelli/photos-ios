@@ -125,9 +125,6 @@ static NSString *const kCSPhotoCellIdentifier = @"CSPhotoCellIdentifier";
     
 }
 
-
-
-
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     CSTagsTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:kCSTagCellIdentifier];
