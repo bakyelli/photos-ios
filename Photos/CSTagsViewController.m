@@ -8,8 +8,11 @@
 
 #import "CSTagsViewController.h"
 #import "CSPhoto.h"
+#import "CSTagsTableViewContentView.h"
+#import "CSTagsTableViewCell.h"
 
 static NSString *const kCSTagCellIdentifier = @"CSTagCellIdentifier";
+static NSString *const kCSPhotoCellIdentifier = @"CSPhotoCellIdentifier";
 
 
 @interface CSTagsViewController ()
@@ -36,7 +39,9 @@ static NSString *const kCSTagCellIdentifier = @"CSTagCellIdentifier";
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [[self tableView] registerClass:[UITableViewCell class] forCellReuseIdentifier:kCSTagCellIdentifier];
+    [self.tableView setRowHeight:180];
+    [self.tableView registerClass:[CSTagsTableViewCell class] forCellReuseIdentifier:kCSTagCellIdentifier];
+    
     [self setTitle:@"Browse Photos by Tags"];
     [self setupBarButtons];
 }
@@ -62,8 +67,6 @@ static NSString *const kCSTagCellIdentifier = @"CSTagCellIdentifier";
     
     NSSortDescriptor *lowestToHighest = [NSSortDescriptor sortDescriptorWithKey:@"self" ascending:YES];
     [self.uniqueTags sortUsingDescriptors:[NSArray arrayWithObject:lowestToHighest]];
-
-    NSLog(@"%@", self.uniqueTags);
 }
 
 - (void)setupBarButtons
@@ -85,21 +88,42 @@ static NSString *const kCSTagCellIdentifier = @"CSTagCellIdentifier";
 #pragma mark -
 #pragma mark - Table view data source
 
-
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+-(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
     return [self.uniqueTags count];
 }
 
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    return 1;
+}
+
+-(NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
+{
+    NSString *tag = self.uniqueTags[section];
+    if([tag isEqualToString:@""])
+    {
+        return NSLocalizedString(@"[NO TAGS]", nil);
+    }
+    else
+    {
+        return tag;
+    }
+    
+}
+
+
+
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:kCSTagCellIdentifier forIndexPath:indexPath];
+    CSTagsTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:kCSTagCellIdentifier];
     
-    if(!cell)
-    {
-        cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:kCSTagCellIdentifier];
-    }
-    cell.textLabel.text = self.uniqueTags[indexPath.row];
+    NSString *tag = self.uniqueTags[indexPath.section];
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"ANY tags == %@",tag];
+    NSArray *filteredPhotos = [self.photos filteredArrayUsingPredicate:predicate];
+    
+    [cell showFilteredPhotos:filteredPhotos];
     
     return cell;
 }
