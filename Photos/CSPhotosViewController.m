@@ -11,14 +11,13 @@
 #import "CSPhotosAPIClient.h"
 #import "UIImageView+AFNetworking.h"
 #import "CSPhotoDetailViewController.h"
-#import "CSPhoto.h"
 #import "CSTagsViewController.h" 
 
 static NSString *const kCSPhotoCellIdentifier = @"CSPhotoCellIdentifier";
 
 @interface CSPhotosViewController () <UICollectionViewDelegateFlowLayout>
 
-@property (nonatomic, strong) NSMutableArray *photos;
+@property (nonatomic, strong) NSArray *photos;
 
 @end
 
@@ -43,6 +42,7 @@ static NSString *const kCSPhotoCellIdentifier = @"CSPhotoCellIdentifier";
 {
     [super viewDidLoad];
     
+    
     [[self view] setBackgroundColor:[UIColor whiteColor]];
     [[self collectionView] setBackgroundColor:[UIColor whiteColor]];
     
@@ -64,15 +64,17 @@ static NSString *const kCSPhotoCellIdentifier = @"CSPhotoCellIdentifier";
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
-    return [[self photos] count];
+    self.title = [NSString stringWithFormat:@"%@ (%d)",@"Photos", [self.photos count]];
+    return [self.photos count];
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
     CSPhotoCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:kCSPhotoCellIdentifier forIndexPath:indexPath];
     
-    CSPhoto *photo = (CSPhoto *)[[self photos] objectAtIndex:[indexPath item]];    
-    [[cell imageView] setImageWithURL:photo.urlMedium placeholderImage:nil];
+    CSPhotoItem *photo = [self.photos objectAtIndex:indexPath.row];
+    
+    [[cell imageView] setImageWithURL:[NSURL URLWithString:photo.urlMedium] placeholderImage:nil];
     
     return cell;
 }
@@ -81,7 +83,7 @@ static NSString *const kCSPhotoCellIdentifier = @"CSPhotoCellIdentifier";
 {
     [collectionView deselectItemAtIndexPath:indexPath animated:YES];
     
-    CSPhoto *photo = (CSPhoto *)[[self photos] objectAtIndex:[indexPath item]];
+    CSPhotoItem *photo = [[self.fetchedResultsController fetchedObjects] objectAtIndex:indexPath.row];
     
     CSPhotoDetailViewController *detailController = [[CSPhotoDetailViewController alloc] initWithPhoto:photo];
     [[self navigationController] pushViewController:detailController animated:YES];
@@ -89,11 +91,11 @@ static NSString *const kCSPhotoCellIdentifier = @"CSPhotoCellIdentifier";
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewFlowLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    CSPhoto *photo = (CSPhoto *)[[self photos] objectAtIndex:[indexPath item]];
+    CSPhotoItem *photo = [[self photos] objectAtIndex:[indexPath item]];
     
     CGSize maxSize = [collectionViewLayout itemSize];
 
-    CGSize photoSize = CGSizeMake(photo.widthMedium, photo.heightMedium);
+    CGSize photoSize = CGSizeMake([photo.widthMedium floatValue], [photo.heightMedium floatValue]);
     if (CGSizeEqualToSize(photoSize, CGSizeZero)) {
         photoSize = maxSize;
     }
@@ -128,12 +130,47 @@ static NSString *const kCSPhotoCellIdentifier = @"CSPhotoCellIdentifier";
 - (void)fetchPhotos
 {
     [[CSPhotosAPIClient sharedClient] fetchPhotosWithSuccess:^(id responseObject) {
-        [self setPhotos:[CSPhoto preparePhotos:responseObject]];
+        [[CSDataStore sharedStore] savePhotos:responseObject];
+        self.photos = [self.fetchedResultsController fetchedObjects];
         [[self collectionView] reloadData];
-         [self setupBarButtons];
+        [self setupBarButtons];
     } failure:^(NSError *error) {
         [[[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Error", @"") message:[error localizedDescription] delegate:nil cancelButtonTitle:NSLocalizedString(@"Okay", @"") otherButtonTitles:nil] show];
     }];
 }
+
+#pragma mark - NSFetchedResultsController Stack
+
+- (NSFetchedResultsController *)fetchedResultsController {
+    
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+    [NSFetchedResultsController deleteCacheWithName:@"CSPhotoItem"];
+    
+    NSEntityDescription *entity = [NSEntityDescription entityForName:@"CSPhotoItem"
+                                              inManagedObjectContext:[CSDataStore sharedStore].managedObjectContext];
+    [fetchRequest setEntity:entity];
+    [fetchRequest setFetchBatchSize:100];
+    
+    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"date_taken" ascending:NO];
+    
+    [fetchRequest setSortDescriptors:@[sortDescriptor]];
+    
+    NSFetchedResultsController *myFetchedResultsController =
+    [[NSFetchedResultsController alloc]
+     initWithFetchRequest:fetchRequest
+     managedObjectContext:[CSDataStore sharedStore].managedObjectContext
+     sectionNameKeyPath:nil
+     cacheName:@"CSPhotoItem"];
+    
+    myFetchedResultsController.delegate = self;
+    _fetchedResultsController = myFetchedResultsController;
+    [_fetchedResultsController performFetch:nil];
+    
+    
+    return _fetchedResultsController;
+    
+}
+
+
 
 @end

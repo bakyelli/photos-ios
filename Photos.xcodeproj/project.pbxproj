@@ -34,11 +34,13 @@
 		7E77C31C16C044F200E2E8AD /* CSPhotosAPIClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E77C31B16C044F200E2E8AD /* CSPhotosAPIClient.m */; };
 		7E77C31F16C049E800E2E8AD /* CSPhotoDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E77C31E16C049E800E2E8AD /* CSPhotoDetailViewController.m */; };
 		F1AD8717189C54A400C73E40 /* CSPhotosAPIClientConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = F1AD8716189C54A400C73E40 /* CSPhotosAPIClientConstants.m */; };
-		F1AD871A189C5A5B00C73E40 /* CSPhoto.m in Sources */ = {isa = PBXBuildFile; fileRef = F1AD8719189C5A5B00C73E40 /* CSPhoto.m */; };
 		F1AD871D189C667500C73E40 /* CSTagsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F1AD871C189C667500C73E40 /* CSTagsViewController.m */; };
 		F1AD8725189C858F00C73E40 /* CSTagsTableViewContentView.m in Sources */ = {isa = PBXBuildFile; fileRef = F1AD8724189C858F00C73E40 /* CSTagsTableViewContentView.m */; };
 		F1AD8727189C85A600C73E40 /* CSTagsTableViewContentView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F1AD8726189C85A600C73E40 /* CSTagsTableViewContentView.xib */; };
 		F1AD872C189C88DE00C73E40 /* CSTagsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F1AD872B189C88DE00C73E40 /* CSTagsTableViewCell.m */; };
+		F1AD8734189CB6E200C73E40 /* CSPhotoItem.m in Sources */ = {isa = PBXBuildFile; fileRef = F1AD8733189CB6E200C73E40 /* CSPhotoItem.m */; };
+		F1AD8737189CB72100C73E40 /* CSDataStore.m in Sources */ = {isa = PBXBuildFile; fileRef = F1AD8736189CB72100C73E40 /* CSDataStore.m */; };
+		F1AD873A189CC4D000C73E40 /* CSPhotoItem+Util.m in Sources */ = {isa = PBXBuildFile; fileRef = F1AD8739189CC4D000C73E40 /* CSPhotoItem+Util.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -88,8 +90,6 @@
 		7E77C31E16C049E800E2E8AD /* CSPhotoDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CSPhotoDetailViewController.m; sourceTree = "<group>"; };
 		7E77C32016C04E7600E2E8AD /* CSPhotosAPIClientConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSPhotosAPIClientConstants.h; sourceTree = "<group>"; };
 		F1AD8716189C54A400C73E40 /* CSPhotosAPIClientConstants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CSPhotosAPIClientConstants.m; sourceTree = "<group>"; };
-		F1AD8718189C5A5B00C73E40 /* CSPhoto.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSPhoto.h; sourceTree = "<group>"; };
-		F1AD8719189C5A5B00C73E40 /* CSPhoto.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CSPhoto.m; sourceTree = "<group>"; };
 		F1AD871B189C667500C73E40 /* CSTagsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSTagsViewController.h; sourceTree = "<group>"; };
 		F1AD871C189C667500C73E40 /* CSTagsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CSTagsViewController.m; sourceTree = "<group>"; };
 		F1AD8723189C858F00C73E40 /* CSTagsTableViewContentView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSTagsTableViewContentView.h; sourceTree = "<group>"; };
@@ -97,6 +97,12 @@
 		F1AD8726189C85A600C73E40 /* CSTagsTableViewContentView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CSTagsTableViewContentView.xib; sourceTree = "<group>"; };
 		F1AD872A189C88DE00C73E40 /* CSTagsTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSTagsTableViewCell.h; sourceTree = "<group>"; };
 		F1AD872B189C88DE00C73E40 /* CSTagsTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CSTagsTableViewCell.m; sourceTree = "<group>"; };
+		F1AD8732189CB6E200C73E40 /* CSPhotoItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSPhotoItem.h; sourceTree = "<group>"; };
+		F1AD8733189CB6E200C73E40 /* CSPhotoItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CSPhotoItem.m; sourceTree = "<group>"; };
+		F1AD8735189CB72100C73E40 /* CSDataStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSDataStore.h; sourceTree = "<group>"; };
+		F1AD8736189CB72100C73E40 /* CSDataStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CSDataStore.m; sourceTree = "<group>"; };
+		F1AD8738189CC4D000C73E40 /* CSPhotoItem+Util.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CSPhotoItem+Util.h"; sourceTree = "<group>"; };
+		F1AD8739189CC4D000C73E40 /* CSPhotoItem+Util.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CSPhotoItem+Util.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -156,8 +162,12 @@
 				7E77C31516C043A400E2E8AD /* CSPhotosViewController.m */,
 				F1AD871B189C667500C73E40 /* CSTagsViewController.h */,
 				F1AD871C189C667500C73E40 /* CSTagsViewController.m */,
-				F1AD8718189C5A5B00C73E40 /* CSPhoto.h */,
-				F1AD8719189C5A5B00C73E40 /* CSPhoto.m */,
+				F1AD8738189CC4D000C73E40 /* CSPhotoItem+Util.h */,
+				F1AD8739189CC4D000C73E40 /* CSPhotoItem+Util.m */,
+				F1AD8732189CB6E200C73E40 /* CSPhotoItem.h */,
+				F1AD8733189CB6E200C73E40 /* CSPhotoItem.m */,
+				F1AD8735189CB72100C73E40 /* CSDataStore.h */,
+				F1AD8736189CB72100C73E40 /* CSDataStore.m */,
 				7E77C31D16C049E800E2E8AD /* CSPhotoDetailViewController.h */,
 				7E77C31E16C049E800E2E8AD /* CSPhotoDetailViewController.m */,
 				7E77C31716C043B000E2E8AD /* CSPhotoCell.h */,
@@ -297,9 +307,12 @@
 				7E77C2DE16C03EEB00E2E8AD /* CSAppDelegate.m in Sources */,
 				F1AD872C189C88DE00C73E40 /* CSTagsTableViewCell.m in Sources */,
 				7E77C2E716C03EEB00E2E8AD /* Photos.xcdatamodeld in Sources */,
+				F1AD8737189CB72100C73E40 /* CSDataStore.m in Sources */,
 				7E77C30716C0434E00E2E8AD /* AFHTTPClient.m in Sources */,
 				7E77C30816C0434E00E2E8AD /* AFHTTPRequestOperation.m in Sources */,
 				7E77C30916C0434E00E2E8AD /* AFImageRequestOperation.m in Sources */,
+				F1AD873A189CC4D000C73E40 /* CSPhotoItem+Util.m in Sources */,
+				F1AD8734189CB6E200C73E40 /* CSPhotoItem.m in Sources */,
 				F1AD8717189C54A400C73E40 /* CSPhotosAPIClientConstants.m in Sources */,
 				7E77C30A16C0434E00E2E8AD /* AFJSONRequestOperation.m in Sources */,
 				7E77C30B16C0434E00E2E8AD /* AFNetworkActivityIndicatorManager.m in Sources */,
@@ -310,7 +323,6 @@
 				F1AD8725189C858F00C73E40 /* CSTagsTableViewContentView.m in Sources */,
 				7E77C30F16C0434E00E2E8AD /* UIImageView+AFNetworking.m in Sources */,
 				7E77C31616C043A400E2E8AD /* CSPhotosViewController.m in Sources */,
-				F1AD871A189C5A5B00C73E40 /* CSPhoto.m in Sources */,
 				7E77C31916C043B000E2E8AD /* CSPhotoCell.m in Sources */,
 				7E77C31C16C044F200E2E8AD /* CSPhotosAPIClient.m in Sources */,
 				7E77C31F16C049E800E2E8AD /* CSPhotoDetailViewController.m in Sources */,

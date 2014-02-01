@@ -11,14 +11,14 @@
 
 @interface CSPhotoDetailViewController ()
 
-@property (nonatomic, strong) CSPhoto *photo;
+@property (nonatomic, strong) CSPhotoItem *photo;
 @property (nonatomic, strong) UIImageView *imageView;
 @property (nonatomic, strong) UIView *metaDataView;
 @end
 
 @implementation CSPhotoDetailViewController
 
-- (id)initWithPhoto:(CSPhoto *)photo
+- (id)initWithPhoto:(CSPhotoItem *)photo
 {
     if ((self = [super init])) {
         [self setPhoto:photo];
@@ -43,9 +43,9 @@
 {
     [super viewDidLoad];
     
-    NSURL *url = self.photo.urlFullSize;
+    NSURL *url = [NSURL URLWithString:self.photo.urlFullSize];
     if (url == nil) {
-        url = self.photo.urlMedium;
+        url = [NSURL URLWithString:self.photo.urlMedium];
     }
     
     [[self imageView] setImageWithURL:url placeholderImage:nil];
@@ -95,7 +95,7 @@
     detailsLabel.numberOfLines = 1;
     detailsLabel.textColor = [UIColor whiteColor];
     detailsLabel.backgroundColor = [UIColor clearColor];
-    detailsLabel.text = [NSString stringWithFormat:@"Uploaded by: %@, Taken on: %@", self.photo.owername, self.photo.date_taken];
+    detailsLabel.text = [NSString stringWithFormat:@"Uploaded by: %@, Taken on: %@", self.photo.ownername, self.photo.date_taken];
 
     
    

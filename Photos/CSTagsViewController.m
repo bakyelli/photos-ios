@@ -7,10 +7,11 @@
 //
 
 #import "CSTagsViewController.h"
-#import "CSPhoto.h"
 #import "CSTagsTableViewContentView.h"
 #import "CSTagsTableViewCell.h"
 #import "CSPhotoDetailViewController.h"
+#import "CSPhotoItem.h" 
+#import "CSPhotoItem+Util.h"
 
 static NSString *const kCSTagCellIdentifier = @"CSTagCellIdentifier";
 static NSString *const kCSPhotoCellIdentifier = @"CSPhotoCellIdentifier";
@@ -18,13 +19,13 @@ static NSString *const kCSPhotoCellIdentifier = @"CSPhotoCellIdentifier";
 
 @interface CSTagsViewController ()
 
-@property (strong, nonatomic) NSMutableArray *photos;
+@property (strong, nonatomic) NSArray *photos;
 @property (strong, nonatomic) NSMutableArray *uniqueTags;
 @end
 
 @implementation CSTagsViewController
 
-- (id)initWithPhotos:(NSMutableArray *)photos
+- (id)initWithPhotos:(NSArray *)photos
 {
     self = [super init];
     
@@ -55,9 +56,9 @@ static NSString *const kCSPhotoCellIdentifier = @"CSPhotoCellIdentifier";
 {
     self.uniqueTags = [NSMutableArray new];
     
-    for(CSPhoto *photo in self.photos)
+    for(CSPhotoItem *photo in self.photos)
     {
-        for(NSString *tag in photo.tags)
+        for(NSString *tag in [photo tags])
         {
             if(![self.uniqueTags containsObject:tag] && [tag rangeOfString:@"="].location == NSNotFound)
             {
@@ -80,7 +81,7 @@ static NSString *const kCSPhotoCellIdentifier = @"CSPhotoCellIdentifier";
 
 -(void)showPhotoDetailView:(NSNotification *)notification
 {
-    CSPhoto *photo = [notification object];
+    CSPhotoItem *photo = [notification object];
     
     CSPhotoDetailViewController *detailController = [[CSPhotoDetailViewController alloc] initWithPhoto:photo];
     [[self navigationController] pushViewController:detailController animated:YES];

@@ -8,9 +8,9 @@
 
 #import "CSTagsTableViewContentView.h"
 #import "CSPhotoCell.h"
-#import "CSPhoto.h"
 #import "UIImageView+AFNetworking.h"
 #import "CSPhotoDetailViewController.h"
+#import "CSPhotoItem.h"
 
 static NSString *const kCSPhotoCellIdentifier = @"CSPhotoCellIdentifier";
 
@@ -45,14 +45,14 @@ static NSString *const kCSPhotoCellIdentifier = @"CSPhotoCellIdentifier";
 -(UICollectionViewCell *) collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
     CSPhotoCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:kCSPhotoCellIdentifier forIndexPath:indexPath];
-    CSPhoto *photo = self.photos[indexPath.row];
-    [[cell imageView] setImageWithURL:photo.urlMedium placeholderImage:nil];
+    CSPhotoItem *photo = self.photos[indexPath.row];
+    [[cell imageView] setImageWithURL:[NSURL URLWithString:photo.urlMedium] placeholderImage:nil];
     return cell;
 }
 
 -(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    CSPhoto *photo = self.photos[indexPath.row];
+    CSPhotoItem *photo = self.photos[indexPath.row];
     [[NSNotificationCenter defaultCenter] postNotificationName:@"showPhotoDetailView" object:photo];
 }
 

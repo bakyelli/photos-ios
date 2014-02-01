@@ -7,7 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <CoreData/CoreData.h> 
+#import "CSDataStore.h" 
+#import "CSPhotoItem.h"
 
-@interface CSPhotosViewController : UICollectionViewController
+@interface CSPhotosViewController : UICollectionViewController <NSFetchedResultsControllerDelegate>
+
+@property (strong, nonatomic) NSFetchedResultsController *fetchedResultsController;
 
 @end

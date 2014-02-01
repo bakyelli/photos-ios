@@ -10,6 +10,6 @@
 
 @interface CSTagsViewController : UITableViewController
 
-- (id)initWithPhotos:(NSMutableArray *)photos;
+- (id)initWithPhotos:(NSArray *)photos;
 
 @end

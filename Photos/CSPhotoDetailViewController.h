@@ -7,10 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "CSPhoto.h" 
+#import "CSPhotoItem.h"
 
 @interface CSPhotoDetailViewController : UIViewController
 
-- (id)initWithPhoto:(CSPhoto *)photo;
+- (id)initWithPhoto:(CSPhotoItem *)photo;
 
 @end
