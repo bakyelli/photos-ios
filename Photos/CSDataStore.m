@@ -58,7 +58,7 @@
                 photoItem.photoID = photoID;
                 photoItem.tagsUnparsed = [rawPhotoDict objectForKey:@"tags"];
             
-            [[CSDataStore sharedStore].managedObjectContext save:nil];
+                [self saveContext];
             }
             
         }
@@ -93,6 +93,8 @@
     }
 }
 
+
+
 #pragma mark - NSFetchedResultsController Stack
 
 - (NSFetchedResultsController *)fetchedResultsController {
@@ -118,7 +120,7 @@
             [self.managedObjectContext deleteObject:item];
         }
         
-        [self.managedObjectContext save:nil];
+        [self saveContext];
         
     }
 }
@@ -198,6 +200,20 @@
     }
     
     return _persistentStoreCoordinator;
+}
+
+- (void)saveContext
+{
+    NSError *error = nil;
+    NSManagedObjectContext *managedObjectContext = self.managedObjectContext;
+    if (managedObjectContext != nil) {
+        if ([managedObjectContext hasChanges] && ![managedObjectContext save:&error]) {
+            // Replace this implementation with code to handle the error appropriately.
+            // abort() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
+            NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
+            abort();
+        }
+    }
 }
 
 #pragma mark - Application's Documents directory

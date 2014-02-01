@@ -21,7 +21,7 @@
 @property (strong, nonatomic) NSFetchedResultsController *fetchedResultsController;
 
 - (CSPhotoItem *)newPhoto;
-- (void) savePhotos:(NSDictionary *)responseDict;
-
+- (void)savePhotos:(NSDictionary *)responseDict;
+- (void)saveContext;
 
 @end
