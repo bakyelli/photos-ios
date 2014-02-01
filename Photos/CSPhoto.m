@@ -23,6 +23,7 @@
         _title = [photoDict objectForKey:@"title"];
         _owername = [photoDict objectForKey:@"ownername"];
         _date_taken = [photoDict objectForKey:@"datetaken"];
+        _photoID = [photoDict objectForKey:@"id"];
         _tags = [[photoDict objectForKey:@"tags"] componentsSeparatedByString:@" "];
     }
     

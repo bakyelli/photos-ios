@@ -18,7 +18,8 @@
 @property (strong, nonatomic) NSArray *tags;
 @property (strong, nonatomic) NSString *title;
 @property (strong, nonatomic) NSString *owername;
-@property (strong, nonatomic) NSString *date_taken; 
+@property (strong, nonatomic) NSString *date_taken;
+@property (strong, nonatomic) NSString *photoID; 
 @property (assign) float widthMedium;
 @property (assign) float heightMedium;
 

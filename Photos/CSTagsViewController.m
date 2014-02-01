@@ -40,6 +40,7 @@ static NSString *const kCSPhotoCellIdentifier = @"CSPhotoCellIdentifier";
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    [self.tableView setScrollsToTop:YES];
     [self.tableView setRowHeight:180];
     [self.tableView registerClass:[CSTagsTableViewCell class] forCellReuseIdentifier:kCSTagCellIdentifier];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(showPhotoDetailView:) name:@"showPhotoDetailView" object:nil];

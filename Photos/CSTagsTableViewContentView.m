@@ -26,6 +26,7 @@ static NSString *const kCSPhotoCellIdentifier = @"CSPhotoCellIdentifier";
     [self.collectionView setBackgroundColor:[UIColor whiteColor]];
     [[self collectionView] registerClass:[CSPhotoCell class] forCellWithReuseIdentifier:kCSPhotoCellIdentifier];
     [self.collectionView setAlwaysBounceHorizontal:YES];
+    [self.collectionView setScrollsToTop:NO];
 }
 
 #pragma mark - 
